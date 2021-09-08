@@ -1,18 +1,9 @@
-# Next.js WordPress Starter
+# Demo HTML Posts Starter
 
 ## ⚡️ Quick Start
 
-### Requirements
-* [WordPress](https://wordpress.org/)
-* [WPGraphQL](https://www.wpgraphql.com/)
-
 ```bash
-yarn create next-app -e https://github.com/colbyfayock/next-wpgraphql-basic-starter
+yarn create next-app -e https://github.com/colbyfayock/demo-html-posts-starter
 # or
-npx create-next-app -e https://github.com/colbyfayock/next-wpgraphql-basic-starter
-```
-
-Add an `.env.local` file to the root with the following:
-```
-WORDPRESS_GRAPHQL_ENDPOINT="http://yourhost.com/graphql"
+npx create-next-app -e https://github.com/colbyfayock/demo-html-posts-starter
 ```

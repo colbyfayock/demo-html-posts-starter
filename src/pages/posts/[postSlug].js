@@ -1,17 +1,16 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { gql } from '@apollo/client';
 
-import { getApolloClient } from 'lib/apollo-client';
+import postsData from '../../../data/posts.json';
 
 import styles from '../../styles/Home.module.css'
 
-export default function Post({ post, site }) {
+export default function Post({ post }) {
   return (
     <div className={styles.container}>
       <Head>
         <title>{ post.title }</title>
-        <meta name="description" content={`Read more about ${post.title} on ${site.title}`} />
+        <meta name="description" content={`Read more about ${post.title} on Space Jelly`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -41,64 +40,18 @@ export default function Post({ post, site }) {
 export async function getStaticProps({ params = {} } = {}) {
   const { postSlug } = params;
 
-  const apolloClient = getApolloClient();
-
-  const data = await apolloClient.query({
-    query: gql`
-      query PostBySlug($slug: String!) {
-        generalSettings {
-          title
-        }
-        postBy(slug: $slug) {
-          id
-          content
-          title
-          slug
-        }
-      }
-    `,
-    variables: {
-      slug: postSlug
-    }
-  });
-
-  const post = data?.data.postBy;
-
-  const site = {
-    ...data?.data.generalSettings
-  }
+  const post = postsData.find(post => post.slug === postSlug);
 
   return {
     props: {
-      post,
-      site
+      post
     }
   }
 }
 
 export async function getStaticPaths() {
-  const apolloClient = getApolloClient();
-
-  const data = await apolloClient.query({
-    query: gql`
-      {
-        posts(first: 10000) {
-          edges {
-            node {
-              id
-              title
-              slug
-            }
-          }
-        }
-      }
-    `,
-  });
-
-  const posts = data?.data.posts.edges.map(({ node }) => node);
-
   return {
-    paths: posts.map(({ slug }) => {
+    paths: postsData.map(({ slug }) => {
       return {
         params: {
           postSlug: slug

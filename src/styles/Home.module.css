@@ -1,4 +1,6 @@
 .container {
+  min-width: 0;
+  width: 100%;
   min-height: 100vh;
   padding: 0 0.5rem;
   display: flex;
@@ -8,6 +10,8 @@
 }
 
 .main {
+  min-width: 0;
+  width: 100%;
   padding: 5rem 0;
   flex: 1;
   display: flex;
@@ -103,6 +107,8 @@
 }
 
 .content {
+  min-width: 0;
+  width: 100%;
   font-size: 1.4em;
 }
 

@@ -13,3 +13,15 @@ a {
 * {
   box-sizing: border-box;
 }
+
+pre {
+  overflow: scroll;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  word-break: break-word;
+}

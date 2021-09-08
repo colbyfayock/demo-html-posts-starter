@@ -1,25 +1,23 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { gql } from '@apollo/client';
 
-import { getApolloClient } from 'lib/apollo-client';
+import postsData from '../../data/posts.json';
 
 import styles from '../styles/Home.module.css'
 
-export default function Home({ page, posts }) {
-  const { title, description } = page;
+export default function Home({ posts }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
+        <title>Space Jelly</title>
+        <meta name="description" content="Cosmic web dev tutorials that will shock you with joy! at Space Jelly" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>{title}</h1>
+        <h1 className={styles.title}>Space Jelly</h1>
 
-        <p className={styles.description}>{ description }</p>
+        <p className={styles.description}>Cosmic web dev tutorials that will shock you with joy! at Space Jelly</p>
 
         <ul className={styles.grid}>
           {posts && posts.length > 0 && posts.map(post => {
@@ -53,43 +51,15 @@ export default function Home({ page, posts }) {
 }
 
 export async function getStaticProps() {
-  const apolloClient = getApolloClient();
-
-  const data = await apolloClient.query({
-    query: gql`
-      {
-        generalSettings {
-          title
-          description
-        }
-        posts(first: 10000) {
-          edges {
-            node {
-              id
-              excerpt
-              title
-              slug
-            }
-          }
-        }
-      }
-    `,
-  });
-
-  const posts = data?.data.posts.edges.map(({ node }) => node).map(post => {
+  const posts = postsData.map(post => {
     return {
       ...post,
       path: `/posts/${post.slug}`
     }
   });
 
-  const page = {
-    ...data?.data.generalSettings
-  }
-
   return {
     props: {
-      page,
       posts
     }
   }
