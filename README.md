@@ -1,23 +1,23 @@
 # Demo HTML Posts Starter
 
-A Next.js blog example that builds a post index and static detail pages from bundled JSON containing WordPress-style HTML content.
+A Next.js blog that builds a post index and static detail pages from bundled posts containing WordPress-style HTML.
 
-## Use this template
+## Getting Started
 
-```bash
-npx create-next-app -e https://github.com/colbyfayock/demo-html-posts-starter
-```
-
-## Local setup
-
-Install dependencies with yarn, then start the development server:
+- Set up a new project
 
 ```bash
-yarn install
-yarn dev
+npx create-next-app my-html-posts -e https://github.com/colbyfayock/demo-html-posts-starter
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the app.
+- Navigate to your new project
 
-Use `yarn build` to create a production build.
-After building, use `yarn start` to serve the production build.
+```bash
+cd my-html-posts
+```
+
+- Start the development server
+
+```bash
+npm run dev
+```
